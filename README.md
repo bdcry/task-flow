@@ -1,73 +1,91 @@
-# React + TypeScript + Vite
+# Task Flow
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Одностраничное приложение-доска задач для практики современного фронтенда.
 
-Currently, two official plugins are available:
+Главная цель проекта - собрать простую копию Trello, где задачи можно будет создавать, редактировать, фильтровать и распределять по статусам.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Что тренирую
 
-## React Compiler
+- React - компоненты, состояние, события, композиция UI.
+- TypeScript - типы задач, статусов, форм и данных.
+- styled-components - стилизация компонентов.
+- react-hook-form - удобная работа с формами и валидацией.
+- Redux Toolkit - глобальное состояние задач и понятная структура store/slices.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Основная идея
 
-## Expanding the ESLint configuration
+Пользователь видит доску задач с колонками:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Backlog
+- In Progress
+- Review
+- Done
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Каждая задача содержит:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- название;
+- описание;
+- статус;
+- приоритет;
+- дату создания.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Планируемый функционал
+
+- Отображение задач по колонкам.
+- Карточка задачи с приоритетом и датой.
+- Создание новой задачи через форму.
+- Редактирование существующей задачи.
+- Удаление задачи.
+- Фильтрация по статусу и приоритету.
+- Хранение задач в Redux Toolkit.
+- Валидация формы через react-hook-form.
+
+## Текущий стек
+
+- React
+- TypeScript
+- Vite
+- ESLint
+
+Планируемые зависимости:
+
+- styled-components
+- react-hook-form
+- @reduxjs/toolkit
+- react-redux
+
+## Структура проекта
+
+```txt
+src/
+  components/   # переиспользуемые UI-компоненты
+  mock/         # моковые данные
+  pages/        # страницы приложения
+  types/        # общие TypeScript-типы
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Команды
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Установка зависимостей:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+```
+
+Запуск dev-сервера:
+
+```bash
+npm run dev
+```
+
+Проверка сборки:
+
+```bash
+npm run build
+```
+
+Проверка линтером:
+
+```bash
+npm run lint
 ```

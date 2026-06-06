@@ -1,3 +1,7 @@
+import { createGlobalStyle } from 'styled-components';
+
+export const GlobalStyle = createGlobalStyle`
+
 * {
   box-sizing: border-box;
 }
@@ -17,6 +21,9 @@ body {
   min-width: 320px;
   min-height: 100vh;
   margin: 0;
+  overflow: hidden;
+  padding: 20px;
+  background-color: #e9ecef;
 }
 
 a {
@@ -51,3 +58,9 @@ button {
   font-size: 32px;
   line-height: 1.2;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: 600;
+}
+`;

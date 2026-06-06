@@ -1,7 +1,15 @@
-export function BoardPage() {
+import { Board } from '../components/Board/Board';
+import { Header, HeaderTitle, Wrapper } from './BoardPage.styled';
+
+export const BoardPage = () => {
   return (
-    <main className="app-page">
-      <h1>Task Flow</h1>
-    </main>
-  )
-}
+    <>
+      <Wrapper>
+        <Header>
+          <HeaderTitle>My Tasks | Task Flow</HeaderTitle>
+        </Header>
+        <Board />
+      </Wrapper>
+    </>
+  );
+};

@@ -17,7 +17,9 @@ import { useModalHook } from '../hooks/useModalHook';
 
 export const BoardPage = () => {
   const [tasks, setTasks] = useState<Task[]>(mockTasks);
-  const { isModalOpen, handleOpenModal, handleCloseModal } = useModalHook();
+  const [selectedTask, setSelectedTask] = useState<Task | null>(null);
+  const { isModalOpen, handleOpenCreateModal, handleOpenEditModal, handleCloseModal } =
+    useModalHook(setSelectedTask);
 
   const handleDeleteTask = (id: string) => {
     const task = tasks.find((task) => task.id === id);
@@ -28,7 +30,18 @@ export const BoardPage = () => {
     toast.success(`Task '${task.title}' deleted`);
   };
 
-  const handleAddNewTask = (data: TaskFormData) => {
+  const handleSubmitForm = (data: TaskFormData) => {
+    if (selectedTask) {
+      setTasks((prev) =>
+        prev.map((task) => (selectedTask.id === task.id ? { ...task, ...data } : task)),
+      );
+
+      toast.success(`Task '${selectedTask.title}' is updated!`);
+      handleCloseModal();
+
+      return;
+    }
+
     const newTask: Task = {
       id: crypto.randomUUID(),
       createdAt: new Date(),
@@ -48,14 +61,14 @@ export const BoardPage = () => {
         </Header>
         <TaskAddWrapper>
           <Title>Add task</Title>
-          <AddTaskButton type="button" onClick={handleOpenModal} />
+          <AddTaskButton type="button" onClick={handleOpenCreateModal} />
         </TaskAddWrapper>
-        <Board tasks={tasks} onDeleteTask={handleDeleteTask} />
+        <Board tasks={tasks} onDeleteTask={handleDeleteTask} onEditTask={handleOpenEditModal} />
       </Wrapper>
 
       {isModalOpen && (
-        <Modal title="Create Task" onClose={handleCloseModal}>
-          <TaskForm onSubmit={handleAddNewTask} />
+        <Modal title={selectedTask ? 'Edit Task' : 'Create Task'} onClose={handleCloseModal}>
+          <TaskForm onSubmit={handleSubmitForm} task={selectedTask} />
         </Modal>
       )}
     </>

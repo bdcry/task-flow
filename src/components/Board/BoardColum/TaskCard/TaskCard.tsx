@@ -11,28 +11,34 @@ import {
 
 const priorityLabels = {
   low: 'Low',
-  medium: 'Meduim',
+  medium: 'Medium',
   high: 'High',
 };
 
 interface TaskCardProps {
   data: Task;
   onDeleteTask: (id: string) => void;
+  onEditTask: (task: Task) => void;
 }
 
-export const TaskCard = ({ data, onDeleteTask }: TaskCardProps) => {
+export const TaskCard = ({ data, onDeleteTask, onEditTask }: TaskCardProps) => {
   const { id, title, description, priority } = data;
   return (
     <CardContainer>
       <CardHeader>
         <h4>{title}</h4>
-        <Label $status={data.priority}>{priorityLabels[priority]}</Label>
+        <Label $status={priority}>{priorityLabels[priority]}</Label>
       </CardHeader>
       <CardBody>
         <p>{description}</p>
       </CardBody>
       <CardFooter>
-        <Button>Edit</Button>
+        <Button
+          onClick={() => {
+            onEditTask(data);
+          }}>
+          Edit
+        </Button>
         <DeleteButton
           onClick={() => {
             onDeleteTask(id);

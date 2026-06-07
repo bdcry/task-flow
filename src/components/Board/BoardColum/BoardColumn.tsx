@@ -12,9 +12,10 @@ interface BoardColumnProps {
   tasks: Task[];
   title: string;
   onDeleteTask: (id: string) => void;
+  onEditTask: (task: Task) => void;
 }
 
-export const BoardColumn = ({ tasks, title, onDeleteTask }: BoardColumnProps) => {
+export const BoardColumn = ({ tasks, title, onDeleteTask, onEditTask }: BoardColumnProps) => {
   return (
     <Container>
       <ColumnHeader>
@@ -23,7 +24,7 @@ export const BoardColumn = ({ tasks, title, onDeleteTask }: BoardColumnProps) =>
       </ColumnHeader>
       <TasksContainer>
         {tasks.map((task) => (
-          <TaskCard key={task.id} data={task} onDeleteTask={onDeleteTask} />
+          <TaskCard key={task.id} data={task} onDeleteTask={onDeleteTask} onEditTask={onEditTask} />
         ))}
       </TasksContainer>
     </Container>

@@ -17,3 +17,8 @@ export interface TaskFormData {
   status: TaskStatus;
   priority: TaskPriority;
 }
+
+export interface Column {
+  status: TaskStatus;
+  title: string;
+}

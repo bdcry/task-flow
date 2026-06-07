@@ -1,23 +1,26 @@
 import { useForm } from 'react-hook-form';
 import { Button, ErrorText, Field, Form, Input, Label, Select, Textarea } from './TaskForm.styled';
-import type { TaskFormData } from '../../types/task';
+import type { Task, TaskFormData } from '../../types/task';
 interface TaskFormProps {
   onSubmit: (data: TaskFormData) => void;
+  task?: Task | null;
 }
 
-export const TaskForm = ({ onSubmit }: TaskFormProps) => {
+export const TaskForm = ({ onSubmit, task }: TaskFormProps) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<TaskFormData>({
     defaultValues: {
-      title: '',
-      description: '',
-      status: 'backlog',
-      priority: 'low',
+      title: task?.title ?? '',
+      description: task?.description ?? '',
+      status: task?.status ?? 'backlog',
+      priority: task?.priority ?? 'low',
     },
   });
+
+  const isEditForm = Boolean(task);
 
   const submitHandler = handleSubmit(onSubmit);
 
@@ -82,7 +85,7 @@ export const TaskForm = ({ onSubmit }: TaskFormProps) => {
         {errors.priority?.message && <ErrorText>{errors.priority.message}</ErrorText>}
       </Field>
 
-      <Button type="submit">Create Task</Button>
+      <Button type="submit">{isEditForm ? 'Edit task' : 'Create Task'}</Button>
     </Form>
   );
 };

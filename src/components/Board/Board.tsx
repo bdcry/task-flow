@@ -1,24 +1,15 @@
 import { Section } from './Board.styled';
 import { BoardColumn } from './BoardColum/BoardColumn';
 import type { Task, TaskStatus } from '../../types/task';
+import { columns } from '../../constants/taskColumns';
 
 interface BoardProps {
   tasks: Task[];
   onDeleteTask: (id: string) => void;
-}
-interface Column {
-  status: TaskStatus;
-  title: string;
+  onEditTask: (task: Task) => void;
 }
 
-const columns: Column[] = [
-  { status: 'backlog', title: 'Backlog' },
-  { status: 'inProgress', title: 'In Progress' },
-  { status: 'review', title: 'Review' },
-  { status: 'done', title: 'Done' },
-];
-
-export const Board = ({ tasks, onDeleteTask }: BoardProps) => {
+export const Board = ({ tasks, onDeleteTask, onEditTask }: BoardProps) => {
   return (
     <>
       <Section>
@@ -30,6 +21,7 @@ export const Board = ({ tasks, onDeleteTask }: BoardProps) => {
               tasks={columnTasks}
               title={column.title}
               onDeleteTask={onDeleteTask}
+              onEditTask={onEditTask}
             />
           );
         })}

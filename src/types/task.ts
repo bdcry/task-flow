@@ -18,7 +18,7 @@ export interface TaskFormData {
   priority: TaskPriority;
 }
 
-export interface Column {
-  status: TaskStatus;
+export interface Label {
+  option: TaskPriority;
   title: string;
 }

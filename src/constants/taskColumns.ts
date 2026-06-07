@@ -1,4 +1,4 @@
-import type { Column } from '../types/task';
+import type { Column } from '../types/column';
 
 export const columns: Column[] = [
   { status: 'backlog', title: 'Backlog' },

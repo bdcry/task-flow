@@ -1,6 +1,6 @@
 import { Section } from './Board.styled';
 import { BoardColumn } from './BoardColum/BoardColumn';
-import type { Task, TaskStatus } from '../../types/task';
+import type { Task } from '../../types/task';
 import { columns } from '../../constants/taskColumns';
 
 interface BoardProps {

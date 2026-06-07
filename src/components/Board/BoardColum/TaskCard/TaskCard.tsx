@@ -1,3 +1,4 @@
+import { priorityLabels } from '../../../../constants/priorityLabels';
 import type { Task } from '../../../../types/task';
 import {
   CardContainer,
@@ -8,12 +9,6 @@ import {
   DeleteButton,
   Label,
 } from './TaskCard.styled';
-
-const priorityLabels = {
-  low: 'Low',
-  medium: 'Medium',
-  high: 'High',
-};
 
 interface TaskCardProps {
   data: Task;

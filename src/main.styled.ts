@@ -21,7 +21,6 @@ body {
   min-width: 320px;
   min-height: 100vh;
   margin: 0;
-  overflow: hidden;
   padding: 20px;
   background-color: #e9ecef;
 }

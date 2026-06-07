@@ -1,6 +1,9 @@
 import { useForm } from 'react-hook-form';
 import { Button, ErrorText, Field, Form, Input, Label, Select, Textarea } from './TaskForm.styled';
 import type { Task, TaskFormData } from '../../types/task';
+import { columns } from '../../constants/taskColumns';
+import { labels } from '../../constants/priorityLabels';
+
 interface TaskFormProps {
   onSubmit: (data: TaskFormData) => void;
   task?: Task | null;
@@ -62,10 +65,9 @@ export const TaskForm = ({ onSubmit, task }: TaskFormProps) => {
           {...register('status', {
             required: 'Status is required',
           })}>
-          <option value="backlog">Backlog</option>
-          <option value="inProgress">In Progress</option>
-          <option value="review">Review</option>
-          <option value="done">Done</option>
+          {columns.map((column) => (
+            <option value={column.status}>{column.title}</option>
+          ))}
         </Select>
         {errors.status?.message && <ErrorText>{errors.status.message}</ErrorText>}
       </Field>
@@ -78,9 +80,9 @@ export const TaskForm = ({ onSubmit, task }: TaskFormProps) => {
           {...register('priority', {
             required: 'Priority is required',
           })}>
-          <option value="low">Low</option>
-          <option value="medium">Medium</option>
-          <option value="high">High</option>
+          {labels.map((label) => (
+            <option value={label.option}>{label.title}</option>
+          ))}
         </Select>
         {errors.priority?.message && <ErrorText>{errors.priority.message}</ErrorText>}
       </Field>

@@ -7,7 +7,7 @@ export const mockTasks: Task[] = [
     description: 'Create wireframes and mockups for the new project management app.',
     status: 'inProgress',
     priority: 'medium',
-    createAt: new Date('2026-05-28'),
+    createdAt: new Date('2026-05-28'),
   },
   {
     id: '2',
@@ -15,7 +15,7 @@ export const mockTasks: Task[] = [
     description: 'Prepare folders, base routes, and shared files for the application.',
     status: 'done',
     priority: 'high',
-    createAt: new Date('2026-05-20'),
+    createdAt: new Date('2026-05-20'),
   },
   {
     id: '3',
@@ -23,7 +23,7 @@ export const mockTasks: Task[] = [
     description: 'Build a shared button component with variants for main actions.',
     status: 'review',
     priority: 'medium',
-    createAt: new Date('2026-05-31'),
+    createdAt: new Date('2026-05-31'),
   },
   {
     id: '4',
@@ -31,7 +31,7 @@ export const mockTasks: Task[] = [
     description: 'Allow users to filter tasks by status and priority.',
     status: 'backlog',
     priority: 'low',
-    createAt: new Date('2026-06-01'),
+    createdAt: new Date('2026-06-01'),
   },
   {
     id: '5',
@@ -39,7 +39,7 @@ export const mockTasks: Task[] = [
     description: 'Render tasks in separate columns based on their current status.',
     status: 'inProgress',
     priority: 'high',
-    createAt: new Date('2026-06-03'),
+    createdAt: new Date('2026-06-03'),
   },
   {
     id: '6',
@@ -47,7 +47,7 @@ export const mockTasks: Task[] = [
     description: 'Show a clear empty state when a column has no tasks.',
     status: 'backlog',
     priority: 'medium',
-    createAt: new Date('2026-06-04'),
+    createdAt: new Date('2026-06-04'),
   },
   {
     id: '7',
@@ -55,7 +55,7 @@ export const mockTasks: Task[] = [
     description: 'Improve board spacing and card width on small screens.',
     status: 'review',
     priority: 'high',
-    createAt: new Date('2026-06-02'),
+    createdAt: new Date('2026-06-02'),
   },
   {
     id: '8',
@@ -63,7 +63,7 @@ export const mockTasks: Task[] = [
     description: 'Display visual priority labels on each task card.',
     status: 'done',
     priority: 'low',
-    createAt: new Date('2026-05-25'),
+    createdAt: new Date('2026-05-25'),
   },
   {
     id: '9',
@@ -71,7 +71,7 @@ export const mockTasks: Task[] = [
     description: 'Use mock tasks as the first data source for the board.',
     status: 'inProgress',
     priority: 'medium',
-    createAt: new Date('2026-06-05'),
+    createdAt: new Date('2026-06-05'),
   },
   {
     id: '10',
@@ -79,7 +79,7 @@ export const mockTasks: Task[] = [
     description: 'Check task cards for readable text, focus states, and semantic markup.',
     status: 'backlog',
     priority: 'high',
-    createAt: new Date('2026-05-30'),
+    createdAt: new Date('2026-05-30'),
   },
   {
     id: '11',
@@ -87,7 +87,7 @@ export const mockTasks: Task[] = [
     description: 'Prepare a simple loading view for future async task fetching.',
     status: 'backlog',
     priority: 'low',
-    createAt: new Date('2026-05-22'),
+    createdAt: new Date('2026-05-22'),
   },
   {
     id: '12',
@@ -95,6 +95,6 @@ export const mockTasks: Task[] = [
     description: 'Keep task-related types grouped and easy to reuse across components.',
     status: 'done',
     priority: 'medium',
-    createAt: new Date('2026-05-18'),
+    createdAt: new Date('2026-05-18'),
   },
 ];

@@ -1,4 +1,4 @@
-import type { Task, TaskStatus } from '../../../types/task';
+import type { Task } from '../../../types/task';
 import {
   Container,
   ColumnTitle,
@@ -8,12 +8,13 @@ import {
 } from './BoardColumn.styled';
 import { TaskCard } from './TaskCard/TaskCard';
 
-type TBoardColumnProps = {
+interface BoardColumnProps {
   tasks: Task[];
   title: string;
-};
+  onDeleteTask: (id: string) => void;
+}
 
-export const BoardColumn = ({ tasks, title }: TBoardColumnProps) => {
+export const BoardColumn = ({ tasks, title, onDeleteTask }: BoardColumnProps) => {
   return (
     <Container>
       <ColumnHeader>
@@ -22,7 +23,7 @@ export const BoardColumn = ({ tasks, title }: TBoardColumnProps) => {
       </ColumnHeader>
       <TasksContainer>
         {tasks.map((task) => (
-          <TaskCard data={task} />
+          <TaskCard key={task.id} data={task} onDeleteTask={onDeleteTask} />
         ))}
       </TasksContainer>
     </Container>

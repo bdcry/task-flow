@@ -8,7 +8,6 @@ export const Container = styled.section`
   border: 1px solid #00000029;
   border-radius: 1rem;
   padding: 10px;
-  max-height: 500px;
   min-width: 250px;
 `;
 
@@ -52,4 +51,5 @@ export const TasksContainer = styled.div`
   flex-direction: column;
   gap: 10px;
   overflow: auto;
+  max-height: calc(100vh - 200px);
 `;

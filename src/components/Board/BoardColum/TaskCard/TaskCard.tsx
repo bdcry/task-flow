@@ -6,26 +6,39 @@ import {
   CardFooter,
   Button,
   DeleteButton,
+  Label,
 } from './TaskCard.styled';
 
-type TTaskCardProps = {
-  data: Task;
+const priorityLabels = {
+  low: 'Low',
+  medium: 'Meduim',
+  high: 'High',
 };
 
-export const TaskCard = ({ data }: TTaskCardProps) => {
+interface TaskCardProps {
+  data: Task;
+  onDeleteTask: (id: string) => void;
+}
+
+export const TaskCard = ({ data, onDeleteTask }: TaskCardProps) => {
+  const { id, title, description, priority } = data;
   return (
     <CardContainer>
       <CardHeader>
-        <h4>{data.title}</h4>
-        <span>{data.status}</span>
-        <span>{data.priority}</span>
+        <h4>{title}</h4>
+        <Label $status={data.priority}>{priorityLabels[priority]}</Label>
       </CardHeader>
       <CardBody>
-        <p>{data.description}</p>
+        <p>{description}</p>
       </CardBody>
       <CardFooter>
         <Button>Edit</Button>
-        <DeleteButton>Delete</DeleteButton>
+        <DeleteButton
+          onClick={() => {
+            onDeleteTask(id);
+          }}>
+          Delete
+        </DeleteButton>
       </CardFooter>
     </CardContainer>
   );

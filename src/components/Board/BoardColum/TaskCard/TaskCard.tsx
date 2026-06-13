@@ -1,14 +1,7 @@
 import { priorityLabels } from '../../../../constants/priorityLabels';
+import { Button } from '../../../../elements';
 import type { Task } from '../../../../types/task';
-import {
-  CardContainer,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Button,
-  DeleteButton,
-  Label,
-} from './TaskCard.styled';
+import { CardContainer, CardHeader, CardBody, CardFooter, Label } from './TaskCard.styled';
 
 interface TaskCardProps {
   data: Task;
@@ -29,17 +22,21 @@ export const TaskCard = ({ data, onDeleteTask, onEditTask }: TaskCardProps) => {
       </CardBody>
       <CardFooter>
         <Button
-          onClick={() => {
+          variant="EDIT"
+          handleOnClick={() => {
             onEditTask(data);
-          }}>
+          }}
+          isDisabled={data.status === 'done'}>
           Edit
         </Button>
-        <DeleteButton
-          onClick={() => {
+        <Button
+          variant="DELETE"
+          handleOnClick={() => {
             onDeleteTask(id);
-          }}>
+          }}
+          isDisabled={!(data.status === 'backlog')}>
           Delete
-        </DeleteButton>
+        </Button>
       </CardFooter>
     </CardContainer>
   );

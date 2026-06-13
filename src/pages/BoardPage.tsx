@@ -9,32 +9,36 @@ import {
   Wrapper,
 } from './BoardPage.styled';
 import type { Task, TaskFormData } from '../types/task';
-import { mockTasks } from '../mock/tasks';
 import { toast } from 'react-toastify';
 import { Modal } from '../components/Modal/Modal';
 import { TaskForm } from '../components/TaskForm/TaskForm';
 import { useModalHook } from '../hooks/useModalHook';
+import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks';
+import { addTask, deleteTask, updateTask } from '../store/tasksSlice';
 
 export const BoardPage = () => {
-  const [tasks, setTasks] = useState<Task[]>(mockTasks);
+  const tasks = useAppSelector((state) => state.tasks.items);
+  const dispatch = useAppDispatch();
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
   const { isModalOpen, handleOpenCreateModal, handleOpenEditModal, handleCloseModal } =
     useModalHook(setSelectedTask);
 
   const handleDeleteTask = (id: string) => {
     const task = tasks.find((task) => task.id === id);
-
     if (!task) return;
 
-    setTasks((prevState) => prevState.filter((task) => task.id !== id));
+    dispatch(deleteTask(id));
     toast.success(`Task '${task.title}' deleted`);
   };
 
   const handleSubmitForm = (data: TaskFormData) => {
     if (selectedTask) {
-      setTasks((prev) =>
-        prev.map((task) => (selectedTask.id === task.id ? { ...task, ...data } : task)),
-      );
+      const updatedTask: Task = {
+        id: selectedTask.id,
+        createdAt: selectedTask.createdAt,
+        ...data,
+      };
+      dispatch(updateTask(updatedTask));
 
       toast.success(`Task '${selectedTask.title}' is updated!`);
       handleCloseModal();
@@ -48,7 +52,7 @@ export const BoardPage = () => {
       ...data,
     };
 
-    setTasks((prev) => [...prev, newTask]);
+    dispatch(addTask(newTask));
     toast.success(`Task '${data.title}' is created!`);
     handleCloseModal();
   };

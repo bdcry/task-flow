@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-type TypeButton = 'EDIT' | 'DELETE';
+type ButtonVariant = 'EDIT' | 'DELETE';
 interface HTMLElementProps {
-  $buttonType: TypeButton;
+  $buttonType: ButtonVariant;
 }
 
 const disabledStyle = {
@@ -12,7 +12,17 @@ const disabledStyle = {
   },
 };
 
-export const StyledButton = styled.button<HTMLElementProps>`
+const BaseButton = styled.button`
+    padding: 5px 10px;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+`;
+
+export const StyledButton = styled(BaseButton)<HTMLElementProps>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,16 +30,9 @@ export const StyledButton = styled.button<HTMLElementProps>`
     switch (props.$buttonType) {
       case 'EDIT':
         return {
-          padding: '5px 10px',
-          border: 'none',
-          borderRadius: '8px',
           backgroundColor: '#4183fe',
-          color: '#ffff',
-          fontSize: '14px',
-          transition: 'background-color 0.3s ease',
-          width: '100%',
 
-          '&:hover': {
+          '&:not(:disabled):hover': {
             backgroundColor: '#6ae2fe',
           },
 
@@ -38,16 +41,9 @@ export const StyledButton = styled.button<HTMLElementProps>`
 
       case 'DELETE':
         return {
-          padding: '5px 10px',
-          border: 'none',
-          borderRadius: '8px',
           backgroundColor: '#ff4d4d',
-          color: '#ffff',
-          fontSize: '14px',
-          transition: 'background-color 0.3s ease',
-          width: '100%',
 
-          '&:hover': {
+          '&:not(:disabled):hover': {
             backgroundColor: '#ff6e6e',
           },
 
